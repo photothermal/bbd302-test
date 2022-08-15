@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D73E3123-07DB-465F-96B7-CF38596501D9}</ProjectGuid>
+    <ProjectGuid>{09BEE63C-E70B-4C91-B240-0E951864AB06}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>bbd302_test</RootNamespace>
     <AssemblyName>bbd302-test</AssemblyName>
@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PSC.Stage\StageAxisThorlabs.cs" />
     <Compile Include="PSC.Stage\StageComFTDI.cs" />
     <Compile Include="PSC.Stage\StageComThorlabs.cs" />
+    <Compile Include="status-messages-test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
