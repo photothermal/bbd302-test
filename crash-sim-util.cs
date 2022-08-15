@@ -16,10 +16,6 @@ namespace bbd302_test
             {
                 Console.WriteLine("PSC utility to simulate deadlock, forcing Thorlabs BBD302 to halt status messages");
 
-                var ackTask = default(Task);
-                var cancelSource = new CancellationTokenSource();
-                var cancellationToken = cancelSource.Token;
-
                 // create the controller communication object
                 var controller = new StageComThorlabs() { Description = "Brushless Motor Controller" };
 
@@ -28,12 +24,12 @@ namespace bbd302_test
                 controller.Connect();
                 Console.WriteLine("Done ---------------------------");
 
-
                 // reqest update messages
                 Console.WriteLine("Requesting Status Updates ------");
                 controller.SendPacket(new StageComThorlabs.Packet(MGMSG.MGMSG_HW_START_UPDATEMSGS, Target.Bay0));
                 controller.SendPacket(new StageComThorlabs.Packet(MGMSG.MGMSG_HW_START_UPDATEMSGS, Target.Bay1));
                 Console.WriteLine("Done ---------------------------");
+
 
             }
             catch (Exception ex)

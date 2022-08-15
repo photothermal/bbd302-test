@@ -1,10 +1,9 @@
 ﻿using PSC.Stage;
 using PSC.Stage.Thorlabs;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Pulse = PSC.Stage.Thorlabs.Pulse;
-using PulseParam = PSC.Stage.StageAxisThorlabsBBD30x.Configuration.PulseParam;
 
 namespace bbd302_test
 {
@@ -29,6 +28,12 @@ namespace bbd302_test
                 Console.WriteLine("Done ---------------------------");
 
 
+                Console.WriteLine("Halting Status Updates ---------");
+                controller.SendPacket(new StageComThorlabs.Packet(MGMSG.MGMSG_HW_STOP_UPDATEMSGS, Target.Bay0));
+                controller.SendPacket(new StageComThorlabs.Packet(MGMSG.MGMSG_HW_STOP_UPDATEMSGS, Target.Bay1));
+                Console.WriteLine("Done ---------------------------");
+
+
                 // reqest update messages
                 Console.WriteLine("Requesting Status Updates ------");
                 controller.SendPacket(new StageComThorlabs.Packet(MGMSG.MGMSG_HW_START_UPDATEMSGS, Target.Bay0));
@@ -38,19 +43,19 @@ namespace bbd302_test
 
                 try
                 {
-                    // start loop to send acq messages
-                    Console.WriteLine("Starting ACQ messages ----------");
-                    Console.WriteLine("Done ---------------------------");
-                    ackTask = Task.Run(async () =>
-                    {
-                        while (!cancellationToken.IsCancellationRequested)
-                        {
-                            controller.SendPacket(new StageComThorlabs.Packet(MGMSG.MGMSG_MOT_ACK_DCSTATUSUPDATE, Target.Bay0));
-                            controller.SendPacket(new StageComThorlabs.Packet(MGMSG.MGMSG_MOT_ACK_DCSTATUSUPDATE, Target.Bay1));
+                    //// start loop to send ack messages
+                    //Console.WriteLine("Starting ACK messages ----------");
+                    //Console.WriteLine("Done ---------------------------");
+                    //ackTask = Task.Run(async () =>
+                    //{
+                    //    while (!cancellationToken.IsCancellationRequested)
+                    //    {
+                    //        controller.SendPacket(new StageComThorlabs.Packet(MGMSG.MGMSG_MOT_ACK_DCSTATUSUPDATE, Target.Bay0));
+                    //        controller.SendPacket(new StageComThorlabs.Packet(MGMSG.MGMSG_MOT_ACK_DCSTATUSUPDATE, Target.Bay1));
 
-                            await Task.Delay(1000, cancellationToken).ConfigureAwait(false);
-                        }
-                    });
+                    //        await Task.Delay(1000, cancellationToken).ConfigureAwait(false);
+                    //    }
+                    //});
 
 
                     Console.WriteLine("Press any key to stop messages...");
@@ -61,7 +66,18 @@ namespace bbd302_test
                     // halt ACK messages
                     Console.WriteLine("Halting ACQ messages -----------");
                     cancelSource?.Cancel();
-                    ackTask.Wait(1000);
+                    try
+                    {
+                        ackTask?.Wait(1000);
+                    }
+                    catch (OperationCanceledException) { }
+                    catch(AggregateException ae)
+                    {
+                        foreach(var e in ae.InnerExceptions?.Where(ex=>!(ex is OperationCanceledException)) ?? new Exception[0])
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                    }
                     Console.WriteLine("Done ---------------------------");
 
 

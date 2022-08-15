@@ -7,7 +7,7 @@
     <ProjectGuid>{7EAA7886-EAF7-43EA-AFB8-2D8FACB8E685}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>bbd302_test</RootNamespace>
-    <AssemblyName>bbd302-test</AssemblyName>
+    <AssemblyName>crash-sim-util</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
