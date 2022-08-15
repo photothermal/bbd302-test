@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "position-trigger-test", "po
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "status-messages-test", "status-messages-test.csproj", "{09BEE63C-E70B-4C91-B240-0E951864AB06}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "crash-sim-util", "crash-sim-util.csproj", "{7EAA7886-EAF7-43EA-AFB8-2D8FACB8E685}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{09BEE63C-E70B-4C91-B240-0E951864AB06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09BEE63C-E70B-4C91-B240-0E951864AB06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09BEE63C-E70B-4C91-B240-0E951864AB06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EAA7886-EAF7-43EA-AFB8-2D8FACB8E685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EAA7886-EAF7-43EA-AFB8-2D8FACB8E685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EAA7886-EAF7-43EA-AFB8-2D8FACB8E685}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EAA7886-EAF7-43EA-AFB8-2D8FACB8E685}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
